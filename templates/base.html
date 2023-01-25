@@ -1,0 +1,131 @@
+{% load static %}
+{% load cloudinary %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% if title %}
+        <title>Tailor's Thimble | {{ title }}</title>
+    {% else %}
+        <title>Tailor's Thimble</title>
+    {% endif %}
+</head>
+<body>
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="{% url 'home-page' %}">
+                    <img src="https://res.cloudinary.com/aperlae/image/upload/c_scale,q_auto,w_200/v1674582646/tailors-thimble-images/Tailors_Thimble_Logo_PNG_pexih3.png" width="175" height="auto" alt="A thimble designed with greyscale tones and Tailor's Thimble printed on the right.">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                    </ul>
+                    <!-- Navbar Right -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer-dark">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-4 item">
+                    <h5>Location</h5>
+                    <address class="text">Tailor's Thimble<br>23, Strada Rjali<br>Valletta, Malta</address>
+                </div>
+                <div class="col-md-4 item">
+                    <h5>Opening Hours</h5>
+                    <table class="table table-sm table-dark ml-2 mr-2 text">
+                        <thead>
+                          <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">Morning</th>
+                            <th scope="col">Evening</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Mon</th>
+                            <td><i>Closed</i></td>
+                            <td>4:00-7:00</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Tue-Fri</th>
+                            <td>8:30-12:30</td>
+                            <td>4:00-7:00</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Sat</th>
+                            <td>8:30-12:30</td>
+                            <td><i>Closed</i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="col-md-4 item">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li>
+                            <a href="tel:+356012345678" target="_blank" rel="noopener"
+                                aria-label="Call us on +356 012 345 678">+356 01 234567
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@tailorsthimble.mt" target="_blank"                          rel="noopener"
+                                aria-label="Email us at info@tailorsthimble.mt (opens in a new                tab)">
+                                info@tailorsthimble.mt
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                <div class="col-12 item social">
+                    <h5>Follow us on</h5>
+                    <a href="https://www.facebook.com"><i class="icon fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com"><i class="icon fa-brands fa-twitter"></i></a>
+                    <!-- <a href="https://www.snapchat.com"><i class="icon fa-brands fa-snapchat"></i></a> -->
+                    <a href="https://www.instagram.com"><i class="icon fa-brands fa-instagram"></i></a>
+                </div>
+            
+            <p class="copyright">&copy; 2023 Tailor's Thimble by 
+                <a href="https://www.linkedin.com/in/monique-parnis" target="_blank"> MoniPar
+                </a>
+            </p>
+        </div>
+    </footer>
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/967a4d433b.js" preconnect crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
+</html>

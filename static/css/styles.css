@@ -1,0 +1,174 @@
+
+li { list-style-type: none;}
+a {text-decoration: none;}
+
+/* Hides elements, readable by screen readers 
+https://webaim.org/techniques/css/invisiblecontent/ */
+.sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+body {
+    /* font-size: 1.6rem; */
+    padding-top: 7rem;
+}
+
+
+
+.navbar {
+    background-color: #d9eaf5;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.hero-container {
+    height: 60vh;
+
+    background: url("https://res.cloudinary.com/aperlae/image/upload/c_scale,w_2000/v1674513454/tailors-thimble-images/heng-films-mpdIPhYqZ4Y-unsplash_wdhii5.webp") no-repeat top center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.opaque-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+
+.btn--hero {
+    background-color: #6daceb;
+    border-color: #6daceb;
+    font-weight: 600;
+}
+
+.btn--hero:hover {
+    background-color: #406e9c;
+    border-color: #406e9c;
+    color: #bed6ee;
+}
+
+.btn--more {
+    float: right;
+}
+
+/* ------------ */
+/*     Home     */
+/* ------------ */
+@media only screen and (min-width: 768px){
+    
+    .art-1 {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    .art-2 {
+        max-width: 80%;
+        margin: auto;
+    }
+
+    .art-2--text {
+        text-align: right;
+    }
+
+}
+
+
+/* ----------- */
+/*    Footer   */
+/* ----------- */
+/* adapted from Responsive Bootstrap Footer by idesignSMF https://tinyurl.com/3wrta8p5 */
+footer {
+    padding: 50px 0 10px;
+    color: #f0f9ff;
+    background-color: #282d32;
+    text-align: center;
+}
+
+footer .item {
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+footer h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+} 
+
+footer .text {
+    opacity: 0.6;
+    padding: 0;
+    margin: 0;
+}
+
+footer ul {
+    padding: 0;
+    /* list-style: none; */
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+  
+footer ul a,
+.copyright a {
+    color: inherit;
+    /* text-decoration: none; */
+    opacity: 0.6;
+}
+  
+footer ul a:hover,
+.copyright a:hover {
+    opacity: 1;
+}
+
+footer .item.social > a {
+    font-size: 15px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+    margin: 0 8px;
+    color: #fff;
+    opacity: 0.65;
+}
+  
+footer .item.social > a:hover {
+    opacity: 1;
+}
+  
+footer .copyright {
+    padding-top: 24px;
+    opacity: 0.3;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    footer .d-flex {
+        align-items: center;
+    }
+}
+
+
+
