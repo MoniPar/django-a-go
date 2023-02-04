@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-4 bg-white shadow rounded">
+  <div class="row">
+    <div class="col-md-8 mt-4 offset-md-2">
+      <h2>{% trans "Sign In" %}</h2>
+      <p class="border-bottom mb-3">{% blocktrans %}If you have not created an 
+        account yet, then please
+      <a href="{{ signup_url }}">sign up</a> 
+        first.{% endblocktrans %}</p>
+      <div class="row">
+        <div class="col-md-8 mt-2 mb-4">
+          <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              {{ form.as_p }}
+            </fieldset>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
