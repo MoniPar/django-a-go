@@ -26,10 +26,12 @@ body {
     /* font-size: 1.6rem; */
     background-color: #f8f6d4;
     color: #0f0f0f;
-    padding-top: 7rem;
+    padding-top: 7.75rem;
 }
 
-
+.alert {
+    margin-bottom: 0;
+}
 
 .navbar {
     background-color: #bfcde7;

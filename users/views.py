@@ -32,9 +32,10 @@ class Profile(LoginRequiredMixin, View):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            username = user_form.cleaned_data.get('username')
 
             messages.success(
-                request, ('Your profile has been added successfully!'))
+                request, f'{username}, your profile has been created')
 
             return redirect('profile')
         else:
@@ -43,7 +44,8 @@ class Profile(LoginRequiredMixin, View):
                 'profile_form': profile_form
             }
             messages.error(
-                request, ('There has been an error while updating your profile!')
+                request, (
+                    'An error has occurred while updating your profile!')
             )
 
             return render(request, 'users/profile.html', context)
