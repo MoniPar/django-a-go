@@ -27,7 +27,7 @@ class Profile(LoginRequiredMixin, View):
     def post(self, request):
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(
-            request.POST, request.FILES, instance=request.user.profile)
+            request.POST, instance=request.user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -35,7 +35,8 @@ class Profile(LoginRequiredMixin, View):
             username = user_form.cleaned_data.get('username')
 
             messages.success(
-                request, f'{username}, your profile has been created')
+                request, f'{username}, your profile has been '
+                         'successfully updated')
 
             return redirect('profile')
         else:
