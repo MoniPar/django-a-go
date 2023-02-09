@@ -20,7 +20,7 @@
                         <p>Approved: {{ appointment.approved }}</p>
                     </div>
                     
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{% url 'appointment-detail' appointment.id %}" class="btn btn-primary">View Appointment</a>
                 </div>
             </div>
         {% endfor %}

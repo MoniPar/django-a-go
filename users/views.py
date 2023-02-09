@@ -35,8 +35,9 @@ class Profile(LoginRequiredMixin, View):
             username = user_form.cleaned_data.get('username')
 
             messages.success(
-                request, f'{username}, your profile has been '
-                         'successfully updated')
+                request,
+                f"{username}, your profile has been successfully updated"
+            )
 
             return redirect('profile')
         else:
@@ -45,8 +46,8 @@ class Profile(LoginRequiredMixin, View):
                 'profile_form': profile_form
             }
             messages.error(
-                request, (
-                    'An error has occurred while updating your profile!')
+                request,
+                "An error has occurred while updating your profile!"
             )
 
             return render(request, 'users/profile.html', context)

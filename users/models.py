@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from booking.models import Appointment
 
 
 class Profile(models.Model):
