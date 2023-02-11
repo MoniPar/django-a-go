@@ -1,30 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container vh-60">
+<div class="container">    
     <div class="row">
-        <div class="col-12 mt-4">
-            <h2>All Appointments</h2>
+        <div class="col-md-12 mt-4">
+            <h2>My Appointments</h2>
         </div>
-        {% for appointment in appointments %}
-            <div class="card" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
-                <div class="card-body">
-                    <h4 class="card-title">{{ appointment.type }}</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="card-details">
-                        <p>Customer: {{ appointment.user }}</p>
-                        <p>Date: {{ appointment.date }}</p>
-                        <p>Time: {{ appointment.time }}</p>
-                        <p>Location: Tailor's Thimble, 23, Strada Rjali, Valletta, Malta</p>
-                        <p>Approved: {{ appointment.approved }}</p>
+        {% if appointments %}
+            {% for appointment in appointments %}
+                <div class="card mb-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ appointment.type }}</h4>
+                        <div class="card-details">
+                            <p>Date: {{ appointment.date }}</p>
+                            <p>Time: {{ appointment.time }}</p>
+                            <p>Approved: {{ appointment.approved }}</p>
+                        </div>
+                        <a href="{% url 'appointment-detail' appointment.id %}" 
+                            role="button" class="btn btn-primary">View Appointment</a>
                     </div>
-                    
-                    <a href="{% url 'appointment-detail' appointment.id %}" class="btn btn-primary">View Appointment</a>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="card-body">
+                <div class="border-bottom mb-4">
+                    <p>You have no appointments scheduled yet.</p>
+                    <p>Please click the button below to schedule an appointment now.</p>
+                </div>    
             </div>
-        {% endfor %}
+        {% endif %}
     </div>
+    <div>
+        <a href="{% url 'appointment-create' %}" 
+            role="button" class="btn btn-primary">Schedule Appointment</a>
+    </div>        
 </div>
-
 {% endblock content %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
 
@@ -38,3 +39,7 @@ class Appointment(models.Model):
     def __str__(self):
         return f"{self.type} | {self.user.username} | Date: {self.date} | "
         f"Time: {self.time}"
+
+    def get_absolute_url(self):
+        return reverse('appointments')
+        # return reverse('appointment-detail', kwargs={'pk': self.pk})
