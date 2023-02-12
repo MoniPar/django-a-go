@@ -22,7 +22,7 @@
                         <p>Location: Tailor's Thimble, 23, Strada Rjali, Valletta, Malta</p>
                         <p>Approved: {{ object.approved }}</p>
                     </div>            
-                    <a href="#" class="btn btn-primary">Edit Appointment</a>
+                    <a href="{% url 'appointment-update' appointment.id %}" class="btn btn-primary">Edit Appointment</a>
                 </div>
             </div>
         </div>

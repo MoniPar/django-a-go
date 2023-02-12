@@ -75,8 +75,9 @@ body {
 }
 
 .form-group {
-    margin-left: 2em;
+    padding: 1em;
 }
+
 .btn--hero {
     background-color: #6daceb;
     border-color: #6daceb;
@@ -93,11 +94,10 @@ body {
     float: right;
 }
 
-/* ------------ */
-/*     Home     */
-/* ------------ */
 @media only screen and (min-width: 768px){
-    
+    /* ------------ */
+    /*     Home     */
+    /* ------------ */
     .art-1 {
         max-width: 70%;
         margin: 0 auto;
@@ -110,6 +110,10 @@ body {
 
     .art-2--text {
         text-align: right;
+    }
+
+    .form-group {
+        margin-left: 2em;
     }
 
 }

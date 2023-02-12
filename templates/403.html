@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate '403 Forbidden' %}{% endblock title%}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center align-items-center">
+    <div class="card shadow rounded text-center mb-4">
+      <div class="card-header p-4">
+        <h2>Forbidden 403</h2>
+      </div>
+      <div class="card-body p-4">
+        <h3>Access Denied</h3>
+        <p>We are sorry!<br> You have no permissions to access the requested content.</p>
+      </div>
+      <div class="card-footer p-4">
+        <p><a class="btn-lg btn-primary" role="button" href="{% url 'home-page' %}">Back to Home Page</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

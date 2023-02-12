@@ -27,7 +27,10 @@ class ProfileUpdateForm(forms.ModelForm):
     occasion_type = forms.CharField(widget=forms.TextInput(
         attrs={'placeholder': 'E.g. Wedding'}))
     occasion_requirement = forms.CharField(widget=forms.Textarea(
-        attrs={'placeholder': 'E.g. Bridal Gown, 1x Mother of the Bride etc'}))
+        attrs={
+            'placeholder': 'E.g. Bridal Gown, 1x Mother of the Bride etc',
+            'rows': 4
+        }))
 
     class Meta:
         model = Profile

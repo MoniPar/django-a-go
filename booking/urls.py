@@ -11,4 +11,6 @@ urlpatterns = [
           name='appointment-detail'),
      path('appointments/new', views.AppointmentCreate.as_view(),
           name='appointment-create'),
+     path('appointments/<int:pk>/update', views.AppointmentUpdate.as_view(),
+          name='appointment-update'),
 ]

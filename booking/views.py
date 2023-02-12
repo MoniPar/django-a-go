@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+)
 from django.views import generic, View
 from .models import *
 
@@ -10,7 +13,7 @@ class Home(View):
         return render(request, 'home.html', {'title': 'Home'})
 
 
-class AppointmentList(generic.ListView):
+class AppointmentList(LoginRequiredMixin, generic.ListView):
     model = Appointment
     context_object_name = 'appointments'
     template_name = 'booking/appointments.html'
@@ -18,12 +21,19 @@ class AppointmentList(generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        # user = get_obj_or_404(User, username=self.kwargs.get("username"))
         return Appointment.objects.filter(user=self.request.user)
 
 
-class AppointmentDetail(generic.DetailView):
+class AppointmentDetail(
+    LoginRequiredMixin, UserPassesTestMixin, generic.DetailView
+):
     model = Appointment
+
+    def test_func(self):
+        appointment = self.get_object()
+        if self.request.user == appointment.user:
+            return True
+        return False
 
 
 class AppointmentCreate(LoginRequiredMixin, generic.CreateView):
@@ -32,4 +42,23 @@ class AppointmentCreate(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
+
+
+class AppointmentUpdate(
+        LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
+):
+    model = Appointment
+    template_name = 'booking/appointment_update.html'
+    fields = ['type', 'date', 'time', 'comments']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        appointment = self.get_object()
+        if self.request.user == appointment.user:
+            return True
+        return False
