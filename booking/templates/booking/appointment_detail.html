@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-4 offset-md-2">
+            <div class="card mb-4" style="width: 36rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h4 class="card-title mt-2">{{ object.type }}</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="card-details">
+                        <p>Customer: {{ object.user }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Date: {{ object.date }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Time: {{ object.time }}</p>
+                            </div>
+                        </div>
+                        <p>Location: Tailor's Thimble, 23, Strada Rjali, Valletta, Malta</p>
+                        <p>Approved: {{ object.approved }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary btn-sm mt-1 mb-4" href="{% url 'appointment-update' object.id %}" >Edit</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-4" href="{% url 'appointment-delete' object.id %}">Delete</a>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

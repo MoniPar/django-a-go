@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-4 mb-4 bg-white shadow rounded">
+  <div class="row">
+    <div class="col-md-8 mt-4 offset-md-2">
+      <h2>Schedule an Appointment</h2>
+      <p>Thank you for your interest.<br>Please fill in the form below, 
+        specifying in the comment box your request and the date it 
+        needs to be completed by (E.g. Girl Communion Dress, May 14th, 2025).
+        We may get in touch to change your appointment if your deadline 
+        is sooner than our minimum window.
+      </p>
+      <p class="border-bottom mb-3">Use our guidelines on the 
+        <a href="#">Process </a>to select the appropriate
+        type of appointment for your booking.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-2 mb-4 offset-md-2">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          {{ form|crispy }}
+        </fieldset>
+          <div class="form-group">
+            <button class="btn btn-primary mb-2" type="submit">Submit</button>
+          </div>    
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

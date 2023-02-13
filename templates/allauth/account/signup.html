@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-4 bg-white shadow rounded">
+  <div class="row">
+    <div class="col-md-8 mt-4 offset-md-2">
+      <h2>{% trans "Sign Up" %}</h2>
+      <p class="border-bottom mb-3">
+        We are delighted to welcome you to Tailor's Thimble!<br> 
+        Please fill in the registration form below before 
+        booking your <strong>free</strong> 
+        consultation with our Master Tailor.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-2 mb-4 offset-md-2">
+      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          {{ form|crispy }}
+        </fieldset>
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="btn btn-primary mb-2" type="submit">{% trans "Sign Up" %} &raquo;</button>
+      </form>
+      <div class="border-top pt-2">
+        <small class="text-muted">
+          {% blocktrans %}Already have an account? Please 
+          <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+        </small>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <section class="container-fluid hero-container mb-4">
     <div class="opaque-overlay">&nbsp;</div>
     <div class="row">
@@ -8,7 +9,11 @@
                 <div class="container text-light">
                     <h1>Tailor's Thimble</h1>
                     <p class="lead">For All Your Bespoke Tailoring Needs</p>
-                    <a class="btn btn--hero" role="button" href="">Schedule Appointment</a>
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn--hero" role="button" href="{% url 'appointments' %}">Schedule Appointment</a>
+                    {% else %}
+                        <a class="btn btn--hero" role="button" href="{% url 'account_signup' %}">Schedule Appointment</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -42,6 +47,5 @@
         </article>
     </div>
 </section>
-
     
 {% endblock content %}

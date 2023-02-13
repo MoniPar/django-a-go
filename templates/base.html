@@ -5,10 +5,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tailor's Thimble - Appointment booking for a bespoke tailoring service based in Malta">
+    <meta name="keywords" content="Bespoke, Tailor, Django Application, Booking, Malta, Service, Code Institute Project">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- Favicon -->
+    <link rel="icon" href="https://res.cloudinary.com/aperlae/image/upload/e_negate,q_auto/v1675371709/tailors-thimble-images/Tailors_Thimble_Favicon_a1wy1s.jpg" type="image/x-icon">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% if title %}
@@ -17,12 +20,12 @@
         <title>Tailor's Thimble</title>
     {% endif %}
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header class="container-fluid p-0">
         <nav class="navbar navbar-expand-md navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="{% url 'home-page' %}">
-                    <img src="https://res.cloudinary.com/aperlae/image/upload/c_scale,q_auto,w_200/v1674582646/tailors-thimble-images/Tailors_Thimble_Logo_PNG_pexih3.png" width="175" height="auto" alt="A thimble designed with greyscale tones and Tailor's Thimble printed on the right.">
+                    <img src="https://res.cloudinary.com/aperlae/image/upload/c_scale,q_auto,w_200/v1675371715/tailors-thimble-images/Tailors_Thimble_Logo_2_PNG_b5khze.png" width="175" height="auto" alt="A thimble designed with greyscale tones and Tailor's Thimble printed on the right.">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{% url 'home-page' %}">Home<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -41,21 +44,44 @@
                     </ul>
                     <!-- Navbar Right -->
                     <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link disabled">Register</a>
+                            <a class="nav-link" href="{% url 'profile' %}" title="Update Profile">
+                                {{ request.user | title }}'s Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Login</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                    {% endif %}
                     </ul>
                 </div>
             </div>
           </nav>
     </header>
-    <main>
+    <main role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="text-center alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
         {% block content %}{% endblock %}
     </main>
-    <footer class="footer-dark">
+    <footer class="footer-dark mt-auto">
         <div class="container">
             <div class="row d-flex">
                 <div class="col-md-4 item">

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">    
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-4">
+            <div class="card">
+                <img class="card-img-top"
+                src="https://res.cloudinary.com/aperlae/image/upload/c_fill,q_auto,w_963/v1675617960/tailors-thimble-images/pexels-engin-akyurt-1487834_ymj7j2.webp" 
+                alt="green fabric"/>
+                <h2 class="card-title text-center">{{ user.username | title }}</h2>
+                <p class="text-center pr-3 pl-3">Please update your profile by filling in your contact 
+                    details and outfit requirements before proceeding to book an appointment</p>
+                <form method="POST" enctype="multipart/form-data" class="card-body">
+                    {% csrf_token %}
+                    <fieldset class="form-group col-lg-8">
+                        <legend class="mb-2">Profile Information</legend>
+                        {{ user_form|crispy }}
+                    </fieldset>
+                    <fieldset class="form-group col-lg-8">
+                        <legend class="mb-2">Contact Number and Occasion Details</legend>
+                        {{ profile_form|crispy }}
+                    </fieldset>
+                    <button class="btn btn-primary" type="submit">Update Profile</button>
+                </form>
+            </div>     
+        </div>
+    </div>
+</div>    
+{% endblock content %}

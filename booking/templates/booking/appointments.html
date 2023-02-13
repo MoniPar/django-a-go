@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">    
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-12 mt-4 mb-2 d-md-flex justify-content-between">
+            <h2>My Appointments</h2>
+            <div>
+                <a href="{% url 'appointment-create' %}" 
+                    role="button" class="btn btn-primary">Add Appointment</a>
+            </div>
+        </div>
+        {% if appointments %}
+            {% for appointment in appointments %}
+                <div class="card mb-4 " style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ appointment.type }}</h4>
+                        <div class="card-details">
+                            <p>Date: {{ appointment.date }}</p>
+                            <p>Time: {{ appointment.time }}</p>
+                            <p>Approved: {{ appointment.approved }}</p>
+                        </div>
+                        <a href="{% url 'appointment-detail' appointment.id %}" 
+                            role="button" class="btn btn-primary">View Appointment</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card-body">
+                <div class="border-bottom mb-4">
+                    <p>You have no appointments scheduled yet.</p>
+                    <p>Please click the button below to schedule an appointment now.</p>
+                </div>    
+            </div>
+        {% endif %}
+    </div>        
+</div>
+{% endblock content %}
