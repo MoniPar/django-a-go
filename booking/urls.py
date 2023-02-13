@@ -13,4 +13,6 @@ urlpatterns = [
           name='appointment-create'),
      path('appointments/<int:pk>/update', views.AppointmentUpdate.as_view(),
           name='appointment-update'),
+     path('appointments/<int:pk>/delete', views.AppointmentDelete.as_view(),
+          name='appointment-delete'),
 ]

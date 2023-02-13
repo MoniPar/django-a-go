@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin,
 )
+from django.urls import reverse_lazy
 from django.views import generic, View
 from .models import *
 
@@ -56,6 +57,19 @@ class AppointmentUpdate(
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        appointment = self.get_object()
+        if self.request.user == appointment.user:
+            return True
+        return False
+
+
+class AppointmentDelete(
+    LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
+):
+    model = Appointment
+    success_url = reverse_lazy('appointments')
 
     def test_func(self):
         appointment = self.get_object()
