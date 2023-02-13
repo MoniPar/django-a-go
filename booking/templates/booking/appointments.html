@@ -21,7 +21,7 @@
                             <p>Approved: {{ appointment.approved }}</p>
                         </div>
                         <a href="{% url 'appointment-detail' appointment.id %}" 
-                            role="button" class="btn btn-primary">View Appointment</a>
+                            role="button" class="btn btn-outline-primary">View Appointment</a>
                     </div>
                 </div>
             {% endfor %}
@@ -33,6 +33,10 @@
                 </div>    
             </div>
         {% endif %}
+    </div>
+    <div class="row justify-content-center mb-4">
+        <a href="{% url 'profile' %}" role="button"
+            class="btn btn-outline-primary">View Profile</a>
     </div>        
 </div>
 {% endblock content %}

@@ -11,7 +11,12 @@
                 alt="green fabric"/>
                 <h2 class="card-title text-center">{{ user.username | title }}</h2>
                 <p class="text-center pr-3 pl-3">Please update your profile by filling in your contact 
-                    details and outfit requirements before proceeding to book an appointment</p>
+                    details and outfit requirements before proceeding to book an appointment
+                </p>
+                <div class="m-auto">
+                    <a href="{% url 'appointments' %}" role="button"
+                        class="btn btn-outline-primary">View Appointments</a>
+                </div> 
                 <form method="POST" enctype="multipart/form-data" class="card-body">
                     {% csrf_token %}
                     <fieldset class="form-group col-lg-8">
